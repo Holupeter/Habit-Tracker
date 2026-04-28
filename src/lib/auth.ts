@@ -66,4 +66,3 @@ export function login(email: string, password: string): { ok: true } | { ok: fal
 export function logout(): void {
   removeKey(STORAGE_KEYS.session);
 }
-
