@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Habit Tracker PWA (Stage 3)
 
-## Getting Started
+A local-first Habit Tracker Progressive Web App built strictly from the Stage 3 Technical Requirements Document.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- `localStorage` persistence
+- Tests: Vitest (unit + integration) and Playwright (end-to-end)
+
+## Setup
+
+```bash
+npm install
+```
+
+## Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# unit tests + coverage (src/lib coverage threshold enforced)
+npm run test:unit
 
-## Learn More
+# integration/component tests
+npm run test:integration
 
-To learn more about Next.js, take a look at the following resources:
+# end-to-end tests (Playwright)
+npm run test:e2e
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# run everything
+npm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+The app supports these public routes exactly:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/` (splash/boot route; redirects to `/dashboard` if session exists, otherwise `/login`)
+- `/login`
+- `/signup`
+- `/dashboard` (protected; redirects to `/login` without a valid session)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Local persistence (localStorage)
+
+The app uses `localStorage` with these required keys:
+
+- `habit-tracker-users`: JSON array of users
+- `habit-tracker-session`: `null` or `{ userId, email }`
+- `habit-tracker-habits`: JSON array of habits
+
+Storage shapes and behavior live in `C:\Users\Orion\Desktop\App-Habit-Tracker\src\lib\auth.ts`, `C:\Users\Orion\Desktop\App-Habit-Tracker\src\lib\habits.ts`, and `C:\Users\Orion\Desktop\App-Habit-Tracker\src\lib\storage.ts`.
+
+## PWA support
+
+Required PWA files are included:
+
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\manifest.json`
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\sw.js`
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\icons\icon-192.png`
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\icons\icon-512.png`
+
+The service worker is registered on the client via `C:\Users\Orion\Desktop\App-Habit-Tracker\src\components\shared\ServiceWorkerRegistration.tsx`.
+
+## Trade-offs / limitations
+
+- Authentication is intentionally local and deterministic (no server/database), per the spec.
+- The service worker implements a minimal “app shell” cache and a simple runtime cache for GET requests.
+
+## Test file mapping (required files)
+
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\slug.test.ts`: verifies `getHabitSlug` rules and examples
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\validators.test.ts`: verifies `validateHabitName` messages + normalization
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\streaks.test.ts`: verifies `calculateCurrentStreak` logic
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\habits.test.ts`: verifies `toggleHabitCompletion` behavior
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\integration\auth-flow.test.tsx`: verifies signup/login error handling + session creation
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\integration\habit-form.test.tsx`: verifies habit CRUD + streak UI updates
+- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\e2e\app.spec.ts`: verifies routing, auth, habit flows, persistence, and offline app shell
+
