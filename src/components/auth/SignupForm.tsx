@@ -30,7 +30,7 @@ export function SignupForm() {
         <input
           id="signup-email"
           data-testid="auth-signup-email"
-          className="h-10 rounded-md border border-black/15 px-3 outline-none focus:ring-2 focus:ring-black/20"
+          className="h-10 rounded-md border border-black/15 dark:border-white/15 px-3 outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 dark:bg-zinc-900"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
@@ -44,7 +44,7 @@ export function SignupForm() {
         <input
           id="signup-password"
           data-testid="auth-signup-password"
-          className="h-10 rounded-md border border-black/15 px-3 outline-none focus:ring-2 focus:ring-black/20"
+          className="h-10 rounded-md border border-black/15 dark:border-white/15 px-3 outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 dark:bg-zinc-900"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
@@ -56,13 +56,13 @@ export function SignupForm() {
 
       <button
         data-testid="auth-signup-submit"
-        className="h-10 rounded-md bg-black text-white font-medium focus:outline-none focus:ring-2 focus:ring-black/30"
+        className="h-10 rounded-md bg-black dark:bg-white text-white dark:text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30"
         type="submit"
       >
         Sign up
       </button>
 
-      <p className="text-sm text-black/70">
+      <p className="text-sm text-black/70 dark:text-white/70">
         Already have an account?{' '}
         <a className="underline" href="/login">
           Log in

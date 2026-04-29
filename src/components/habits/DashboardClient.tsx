@@ -52,16 +52,16 @@ function DashboardInner() {
   if (!session) return null;
 
   return (
-    <main className="flex-1 p-6 bg-zinc-50">
+    <main className="flex-1 p-6 bg-zinc-50 dark:bg-zinc-950">
       <div className="mx-auto w-full max-w-3xl">
         <header className="flex items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold">Dashboard</h1>
-            <p className="text-sm text-black/60">{session.email}</p>
+            <p className="text-sm text-black/60 dark:text-white/60">{session.email}</p>
           </div>
           <button
             data-testid="auth-logout-button"
-            className="h-10 rounded-md border border-black/15 bg-white px-4 font-medium focus:outline-none focus:ring-2 focus:ring-black/20"
+            className="h-10 rounded-md border border-black/15 dark:border-white/15 bg-white dark:bg-zinc-900 px-4 font-medium focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20"
             type="button"
             onClick={() => {
               logout();
@@ -77,7 +77,7 @@ function DashboardInner() {
             <h2 className="text-lg font-semibold">Your habits</h2>
             <button
               data-testid="create-habit-button"
-              className="h-10 rounded-md bg-black px-4 text-white font-medium focus:outline-none focus:ring-2 focus:ring-black/30"
+              className="h-10 rounded-md bg-black dark:bg-white px-4 text-white dark:text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30"
               type="button"
               onClick={() => {
                 setEditingId(null);
@@ -127,7 +127,7 @@ function DashboardInner() {
           {habits.length === 0 ? (
             <div
               data-testid="empty-state"
-              className="rounded-lg border border-dashed border-black/20 bg-white p-8 text-center text-black/60"
+              className="rounded-lg border border-dashed border-black/20 dark:border-white/20 bg-white dark:bg-zinc-900 p-8 text-center text-black/60 dark:text-white/60"
             >
               No habits yet. Create your first habit.
             </div>
@@ -155,13 +155,13 @@ function DashboardInner() {
           )}
 
           {deletingId ? (
-            <div className="rounded-lg border border-black/10 bg-white p-4 shadow-sm">
+            <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-zinc-900 p-4 shadow-sm">
               <p className="font-medium">Delete this habit?</p>
-              <p className="text-sm text-black/60">This action cannot be undone.</p>
+              <p className="text-sm text-black/60 dark:text-white/60">This action cannot be undone.</p>
               <div className="mt-3 flex gap-2">
                 <button
                   data-testid="confirm-delete-button"
-                  className="h-10 rounded-md bg-red-600 px-4 text-white font-medium focus:outline-none focus:ring-2 focus:ring-red-700/30"
+                  className="h-10 rounded-md bg-red-600 px-4 text-white dark:text-black font-medium focus:outline-none focus:ring-2 focus:ring-red-700/30"
                   type="button"
                   onClick={() => {
                     deleteHabit(deletingId);
@@ -173,7 +173,7 @@ function DashboardInner() {
                   Confirm delete
                 </button>
                 <button
-                  className="h-10 rounded-md border border-black/15 px-4 font-medium focus:outline-none focus:ring-2 focus:ring-black/20"
+                  className="h-10 rounded-md border border-black/15 dark:border-white/15 px-4 font-medium focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20"
                   type="button"
                   onClick={() => setDeletingId(null)}
                 >
