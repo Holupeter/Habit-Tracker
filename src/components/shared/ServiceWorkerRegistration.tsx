@@ -10,8 +10,16 @@ export function ServiceWorkerRegistration(): null {
         .register('/sw.js')
         .then(() => navigator.serviceWorker.ready.catch(() => {}))
         .then(() => {
-          if (!navigator.serviceWorker.controller) {
+          // In some dev setups a service worker may not control the current page
+          // until the next navigation. Reload at most once to avoid loops.
+          if (navigator.serviceWorker.controller) return;
+          try {
+            const key = '__habit_tracker_sw_reload_once__';
+            if (window.sessionStorage.getItem(key) === '1') return;
+            window.sessionStorage.setItem(key, '1');
             window.location.reload();
+          } catch {
+            // ignore
           }
         })
         .catch(() => {});

@@ -23,6 +23,12 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
 
+  const url = new URL(req.url);
+  // Bypass Next.js internal data requests to prevent router initialization errors
+  if (url.pathname.startsWith('/_next') || req.headers.has('rsc') || req.headers.has('RSC')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;

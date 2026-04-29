@@ -14,9 +14,10 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
   useEffect(() => {
     const s = getSession();
     if (!s) {
-      router.replace('/login');
-      setChecked(true);
-      return;
+      const t = setTimeout(() => {
+        router.replace('/login');
+      }, 0);
+      return () => clearTimeout(t);
     }
     setSession(s);
     setChecked(true);
