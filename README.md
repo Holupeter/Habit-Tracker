@@ -58,18 +58,18 @@ The app uses `localStorage` with these required keys:
 - `habit-tracker-session`: `null` or `{ userId, email }`
 - `habit-tracker-habits`: JSON array of habits
 
-Storage shapes and behavior live in `C:\Users\Orion\Desktop\App-Habit-Tracker\src\lib\auth.ts`, `C:\Users\Orion\Desktop\App-Habit-Tracker\src\lib\habits.ts`, and `C:\Users\Orion\Desktop\App-Habit-Tracker\src\lib\storage.ts`.
+Storage shapes and behavior live in [`src/lib/auth.ts`](./src/lib/auth.ts), [`src/lib/habits.ts`](./src/lib/habits.ts), and [`src/lib/storage.ts`](./src/lib/storage.ts).
 
 ## PWA support
 
 Required PWA files are included:
 
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\manifest.json`
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\sw.js`
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\icons\icon-192.png`
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\public\icons\icon-512.png`
+- [`public/manifest.json`](./public/manifest.json)
+- [`public/sw.js`](./public/sw.js)
+- [`public/icons/icon-192.png`](./public/icons/icon-192.png)
+- [`public/icons/icon-512.png`](./public/icons/icon-512.png)
 
-The service worker is registered on the client via `C:\Users\Orion\Desktop\App-Habit-Tracker\src\components\shared\ServiceWorkerRegistration.tsx`.
+The service worker is registered on the client via [`src/components/shared/ServiceWorkerRegistration.tsx`](./src/components/shared/ServiceWorkerRegistration.tsx).
 
 ## Design Decisions & Usage
 
@@ -84,11 +84,11 @@ The service worker is registered on the client via `C:\Users\Orion\Desktop\App-H
 
 ## Test file mapping (required files)
 
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\slug.test.ts`: verifies `getHabitSlug` rules and examples
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\validators.test.ts`: verifies `validateHabitName` messages + normalization
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\streaks.test.ts`: verifies `calculateCurrentStreak` logic
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\unit\habits.test.ts`: verifies `toggleHabitCompletion` behavior
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\integration\auth-flow.test.tsx`: verifies signup/login error handling + session creation
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\integration\habit-form.test.tsx`: verifies habit CRUD + streak UI updates
-- `C:\Users\Orion\Desktop\App-Habit-Tracker\tests\e2e\app.spec.ts`: verifies routing, auth, habit flows, persistence, and offline app shell
+- [`tests/unit/slug.test.ts`](./tests/unit/slug.test.ts): verifies `getHabitSlug` rules and examples
+- [`tests/unit/validators.test.ts`](./tests/unit/validators.test.ts): verifies `validateHabitName` messages + normalization
+- [`tests/unit/streaks.test.ts`](./tests/unit/streaks.test.ts): verifies `calculateCurrentStreak` logic
+- [`tests/unit/habits.test.ts`](./tests/unit/habits.test.ts): verifies `toggleHabitCompletion` behavior
+- [`tests/integration/auth-flow.test.tsx`](./tests/integration/auth-flow.test.tsx): verifies signup/login error handling + session creation
+- [`tests/integration/habit-form.test.tsx`](./tests/integration/habit-form.test.tsx): verifies habit CRUD + streak UI updates
+- [`tests/e2e/app.spec.ts`](./tests/e2e/app.spec.ts): verifies routing, auth, habit flows, persistence, and offline app shell
 
