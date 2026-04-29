@@ -71,6 +71,12 @@ Required PWA files are included:
 
 The service worker is registered on the client via `C:\Users\Orion\Desktop\App-Habit-Tracker\src\components\shared\ServiceWorkerRegistration.tsx`.
 
+## Design Decisions & Usage
+
+- **Daily Frequency Focus:** In this stage of the application, habit tracking is strictly focused on a *daily* frequency to maintain core streak calculation reliability. The "Frequency" dropdown in the creation form is intentionally locked to "Daily" to communicate this to the user, acting as a placeholder for future iterations (e.g., weekly/custom scheduling).
+- **Calendar Toggles:** To keep the dashboard clean and focused on actionable items, we omitted a full-screen calendar view. Instead, the calendar toggle is integrated directly into each habit card via the **"Complete today"** / **"Completed"** button, which instantly updates the internal completion record for the current date.
+- **Dark Mode Compatibility:** The UI uses Tailwind CSS `dark:` utility variants to automatically adapt to system-level light/dark preferences without requiring a manual toggle.
+
 ## Trade-offs / limitations
 
 - Authentication is intentionally local and deterministic (no server/database), per the spec.
